@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:rent_ready_assignment/ui/accounts/accountsPage.dart';
 
-import 'controller/AccountsController.dart';
+import '../controller/AccountsController.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();

@@ -13,30 +13,30 @@ class AccountsController extends ChangeNotifier {
 
   AccountsController._internal();
 
-  List<Account> _accountListAll = [];
   List<Account> _accountList = [];
+  List<Account> _accounts = [];
   Account? _selectedAccount;
-  bool _isloading = false;
-  bool _isList = true;
-  bool _isFilterPanelVisible = false;
+  bool _isDataLoading = false;
+  bool _isListView = true;
+  bool _isFilterVisible = false;
   int? _selectedStateCode;
   String? _selectedStateOrProvince;
 
 
   List<Account> get accountList {
-    return _accountList;
+    return _accounts;
   }
 
-  bool get isFilterPanelVisible {
-    return _isFilterPanelVisible;
+  bool get isFilterVisible {
+    return _isFilterVisible;
   }
 
-  bool get isList {
-    return _isList;
+  bool get isListView {
+    return _isListView;
   }
 
-  bool get isloading {
-    return _isloading;
+  bool get isDataLoading {
+    return _isDataLoading;
   }
 
   Account? get selectedAccount {
@@ -51,24 +51,24 @@ class AccountsController extends ChangeNotifier {
     return _selectedStateOrProvince;
   }
 
-  List<int> get stateCodeList {
+  List<int> get stateCodes {
     List<int> list = [];
-    groupBy(_accountListAll, (Account obj) => obj.stateCode).forEach((key, value) {
+    groupBy(_accountList, (Account obj) => obj.stateCode).forEach((key, value) {
       list.add(key);
     });
     return list;
   }
 
-  List<String> get stateOrProvinceList {
+  List<String> get stateOrProvinces {
     List<String> list = [];
-    groupBy(_accountListAll, (Account obj) => obj.stateOrProvince).forEach((key, value) {
+    groupBy(_accountList, (Account obj) => obj.stateOrProvince).forEach((key, value) {
       list.add(key);
     });
     return list;
   }
 
-  Future<void> clickFilterPanel() async {
-    _isFilterPanelVisible = !_isFilterPanelVisible;
+  Future<void> clickFilterView() async {
+    _isFilterVisible = !_isFilterVisible;
     _selectedStateCode = 0;
     _selectedStateOrProvince = "";
     notifyListeners();
@@ -76,28 +76,28 @@ class AccountsController extends ChangeNotifier {
 
   Future<void> filterByStateCode(int filter) async {
     _selectedStateCode = filter;
-    _accountList = _accountListAll.where((account) => account.stateCode == filter).toList();
+    _accounts = _accountList.where((account) => account.stateCode == filter).toList();
 
     if (_selectedStateOrProvince != null && _selectedStateOrProvince!.isNotEmpty) {
-      _accountList = _accountListAll.where((account) => account.stateOrProvince.toLowerCase().contains(_selectedStateOrProvince!.toLowerCase())).toList();
+      _accounts = _accountList.where((account) => account.stateOrProvince.toLowerCase().contains(_selectedStateOrProvince!.toLowerCase())).toList();
     }
     notifyListeners();
   }
 
   Future<void> filterByStateOrProvince(String filterText) async {
     _selectedStateOrProvince = filterText;
-    _accountList = _accountListAll.where((account) => account.stateOrProvince.toLowerCase().contains(filterText.toLowerCase())).toList();
-    _accountList = _accountList.where((account) => account.stateCode == _selectedStateCode).toList();
+    _accounts = _accountList.where((account) => account.stateOrProvince.toLowerCase().contains(filterText.toLowerCase())).toList();
+    _accounts = _accounts.where((account) => account.stateCode == _selectedStateCode).toList();
     notifyListeners();
   }
 
-  Future<void> searchAccountList(String searchText) async {
-    _isloading = true;
-    _isFilterPanelVisible = false;
+  Future<void> searchAccounts(String searchText) async {
+    _isDataLoading = true;
+    _isFilterVisible = false;
     notifyListeners();
-    _accountListAll = await ApiController.getAccountList(searchText);
-    _accountList = _accountListAll;
-    _isloading = false;
+    _accountList = await ApiController.getAccountList(searchText);
+    _accounts = _accountList;
+    _isDataLoading = false;
     notifyListeners();
   }
 
@@ -106,13 +106,13 @@ class AccountsController extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> setGrid() async {
-    _isList = false;
+  Future<void> setGridView() async {
+    _isListView = false;
     notifyListeners();
   }
 
-  Future<void> setList() async {
-    _isList = true;
+  Future<void> setListView() async {
+    _isListView = true;
     notifyListeners();
   }
 }

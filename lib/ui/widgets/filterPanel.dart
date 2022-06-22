@@ -23,7 +23,7 @@ class _FilterPanelState extends State<FilterPanel> {
       color: Colors.white,
       child: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: model.stateCodeList.isNotEmpty
+        child: model.stateCodes.isNotEmpty
             ? Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -41,7 +41,7 @@ class _FilterPanelState extends State<FilterPanel> {
                     selectedStateCode = newValue;
                   });
                 },
-                items: model.stateCodeList.map<DropdownMenuItem<int>>((int value) {
+                items: model.stateCodes.map<DropdownMenuItem<int>>((int value) {
                   return DropdownMenuItem<int>(
                     value: value,
                     child: Text(value == 0 ? "Active" : "Inactive"),
@@ -65,7 +65,7 @@ class _FilterPanelState extends State<FilterPanel> {
                     selectedStateOrProvince = newValue;
                   });
                 },
-                items: model.stateOrProvinceList.map<DropdownMenuItem<String>>((String value) {
+                items: model.stateOrProvinces.map<DropdownMenuItem<String>>((String value) {
                   return DropdownMenuItem<String>(
                     value: value,
                     child: Text(value),

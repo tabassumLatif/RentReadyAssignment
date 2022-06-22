@@ -14,15 +14,15 @@ class AccountsPage extends StatelessWidget{
   Widget build(BuildContext context) {
     TextEditingController searchController = TextEditingController();
     AccountsController controller = AccountsController();
-    controller.searchAccountList("");
-    const spinkit = SpinKitWave(
-      color: Colors.amber,
-      size: 50.0,
+    controller.searchAccounts("");
+    const spinKitThreeBounce = SpinKitThreeBounce(
+      color: Colors.white,
+      size: 80.0,
     );
 
     return SafeArea(
       child: Scaffold(
-          backgroundColor: Colors.grey,
+          backgroundColor: Colors.blueGrey,
           body: Center(
             child: Container(
               constraints: const BoxConstraints(maxWidth: 800),
@@ -43,7 +43,7 @@ class AccountsPage extends StatelessWidget{
                                 autocorrect: false,
                                 keyboardType: TextInputType.text,
                                 onSubmitted: (s) {
-                                  model.searchAccountList(s);
+                                  model.searchAccounts(s);
                                 },
                                 decoration: const InputDecoration(
                                   prefixIcon: Icon(Icons.search),
@@ -53,7 +53,7 @@ class AccountsPage extends StatelessWidget{
                             ),
                             InkWell(
                               onTap: () async {
-                                await model.clickFilterPanel();
+                                await model.clickFilterView();
                               },
                               child: Row(mainAxisAlignment: MainAxisAlignment.center, children: const [
                                 Icon(Icons.filter_alt),
@@ -69,14 +69,14 @@ class AccountsPage extends StatelessWidget{
                                   icon: const Icon(Icons.view_list_sharp),
                                   tooltip: 'Filter',
                                   onPressed: () {
-                                    model.setList();
+                                    model.setListView();
                                   },
                                 ),
                                 IconButton(
                                   icon: const Icon(Icons.grid_view_sharp),
                                   tooltip: 'Filter',
                                   onPressed: () {
-                                    model.setGrid();
+                                    model.setGridView();
                                   },
                                 ),
                               ],
@@ -84,15 +84,15 @@ class AccountsPage extends StatelessWidget{
                           ],
                         ),
                       ),
-                      if (model.isFilterPanelVisible)
+                      if (model.isFilterVisible)
                         const Padding(
                           padding: EdgeInsets.fromLTRB(8, 8, 8, 0),
                           child: FilterPanel(),
                         ),
-                      model.isloading
-                          ? const Expanded(child: spinkit)
+                      model.isDataLoading
+                          ? const Expanded(child: spinKitThreeBounce)
                           : Expanded(
-                        child: model.isList
+                        child: model.isListView
                             ? ListView.builder(
                             padding: const EdgeInsets.all(8),
                             itemCount: model.accountList.length,
