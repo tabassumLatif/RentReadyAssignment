@@ -20,7 +20,8 @@ class AccountItem extends StatelessWidget {
         child: SizedBox(
           height: 80,
           child: ListTile(
-            leading: const Icon(Icons.person),
+            style: ListTileStyle.drawer,
+            leading: const Icon(Icons.person, size: 60),
             dense: true,
             visualDensity: const VisualDensity(vertical: -3),
             title: Padding(

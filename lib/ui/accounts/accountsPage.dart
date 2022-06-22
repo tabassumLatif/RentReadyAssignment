@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:rent_ready_assignment/controller/AccountsController.dart';
 
+import '../accountDetail/AccountDetailPage.dart';
 import '../widgets/accountItem.dart';
-import '../widgets/filterPanel.dart';
+import '../widgets/filterView.dart';
 
 class AccountsPage extends StatelessWidget{
   const AccountsPage({Key? key}) : super(key: key);
@@ -100,6 +102,7 @@ class AccountsPage extends StatelessWidget{
                               return InkWell(
                                   onTap: () async {
                                     await model.selectAccount(model.accountList[index]);
+                                    await Navigator.push(context, PageTransition(type: PageTransitionType.rightToLeft, child: const AccountDetailPage()));
                                   },
                                   child: AccountItem(account: model.accountList[index]));
                             })
@@ -116,6 +119,7 @@ class AccountsPage extends StatelessWidget{
                                   key: Key("Tap$index"),
                                   onTap: () async {
                                     await model.selectAccount(model.accountList[index]);
+                                    await Navigator.push(context, PageTransition(type: PageTransitionType.rightToLeft, child: const AccountDetailPage()));
                                   },
                                   child: AccountItem(account: model.accountList[index]));
                             }),
