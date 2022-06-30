@@ -11,7 +11,7 @@ void main() {
   test('FilterByStateOrProvince', () async {
     final controller = AccountsController();
     await controller.searchAccounts("");
-    await controller.filterByStateOrProvince("NM");
+    await controller.filterByStateOrProvince("WA");
     expect(controller.accountList.length, inInclusiveRange(0, 100));
   });
   test('FilterByStateCode', () async {

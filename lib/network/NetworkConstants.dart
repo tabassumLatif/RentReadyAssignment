@@ -1,36 +1,16 @@
-import 'dart:convert';
-
 import 'package:get/get.dart';
 
-class NetworkConstants{
-  static const String url = "https://aplusapi.webapptr.com/powerapp/";
-  static const String _apiKey = "Aplus:70816501-edb9-4740-a16c-6a5efbc05d84";
-
-  static const String accountList = "PowerApp/GetAccountList";
+class NetworkConstants {
+  static const String url = "https://org627210a3.crm4.dynamics.com/";
+  static const String accountList = "api/data/v9.2/accounts";
 
   static var client = GetHttpClient(
     baseUrl: NetworkConstants.url,
   );
 
-  static get getAuthKey {
-    String authKey = "$_apiKey:powerApp";
-    return authKey;
-  }
-
-  static get getBasicAuth {
-    return 'Basic ${base64Encode(utf8.encode(getAuthKey))}';
-  }
-
-  static get getHeader {
-    return <String, String>{
-      'authorization': getBasicAuth,
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*',
-      "Access-Control-Allow-Credentials": "true",
-      "Access-Control-Allow-Headers":
-      "Origin,Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,locale",
-      "Access-Control-Allow-Methods": "POST, OPTIONS"
-    };
-  }
+  static const String authToken =
+      "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6IjJaUXBKM1VwYmpBWVhZR2FYRUpsOGxWMFRPSSIsImtpZCI6IjJaUXBKM1VwYmpBWVhZR2FYRUpsOGxWMFRPSSJ9.eyJhdWQiOiJodHRwczovL29yZzA3MzA3MDhjLmNybTQuZHluYW1pY3MuY29tLyIsImlzcyI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0LzNiMDQ2ZWIzLWYwYjItNDJiOS1hMWVjLWJkNzBkZjgwZWUyOS8iLCJpYXQiOjE2NTY2MjQ2MjYsIm5iZiI6MTY1NjYyNDYyNiwiZXhwIjoxNjU2NjI4NjU1LCJhY3IiOiIxIiwiYWlvIjoiQVNRQTIvOFRBQUFBa2ZxMGExdWNvY005NmJMMnNIY2dLeXNWV3c0UUovb0kwZXR0b2Vqcmh1OD0iLCJhbXIiOlsicHdkIl0sImFwcGlkIjoiNjRlNGQ2YTAtNWUxNC00OWQ0LThkZTctYzgwNmY0MDNjNDc2IiwiYXBwaWRhY3IiOiIwIiwiZmFtaWx5X25hbWUiOiJMYXRpZiIsImdpdmVuX25hbWUiOiJUYWJhc3N1bSIsImlwYWRkciI6IjEzNy41OS4yMjguMjQiLCJuYW1lIjoiVGFiYXNzdW0gTGF0aWYiLCJvaWQiOiI2NTgxYTU0Yi0xYWY3LTQzOTgtOTk4ZC1kODRlNjE0ZmUwMTYiLCJwdWlkIjoiMTAwMzIwMDIwQUQ1ODk3QSIsInJoIjoiMC5BWGtBczI0RU83THd1VUtoN0wxdzM0RHVLUWNBQUFBQUFBQUF3QUFBQUFBQUFBQ1VBQXMuIiwic2NwIjoidXNlcl9pbXBlcnNvbmF0aW9uIiwic3ViIjoiV0tkZ0ZpSlFfRmVPajZRWU9OUGpWSjZWOGdwcW5RSE1LRVVTTUJOUDR2RSIsInRpZCI6IjNiMDQ2ZWIzLWYwYjItNDJiOS1hMWVjLWJkNzBkZjgwZWUyOSIsInVuaXF1ZV9uYW1lIjoiVGFiYXNzdW1MYXRpZkBSZW50UmVhZHlBc3NpZ25tZW50Lm9ubWljcm9zb2Z0LmNvbSIsInVwbiI6IlRhYmFzc3VtTGF0aWZAUmVudFJlYWR5QXNzaWdubWVudC5vbm1pY3Jvc29mdC5jb20iLCJ1dGkiOiJ3YURBY29hdy1FQ2pXQl94OHRWT0FBIiwidmVyIjoiMS4wIn0.iPtMaTskE_h9E9IEKMXe5lDQhFSuydZh36gEb6egys2vrNXdGAyftNIJcOHNm_XX7IxbbPNrJA8AQc8TNETj7iXbXBzbiwjAwFvBOU-TewqScqlxDWcPWSPDPI38Qv7u_0pOn4ugDBrRzcfKSc3WYAUPDateVeGK8Nh8t9hHRJddahrVIHIi025CTzHtYwLcpHXoUGU5mEOfB3qonEpwxvRqtiY5CXcCxZjOMGVMdfTX0CGdati4pLTUqXgElvOiKTDfcZFc7eNsOyuO5b69dnh2WF9p-nTzUVjKQ3PiGFF1OultrJtid0fDveG4RJ0GWLfT3BF6h89ImZTmPRq5IA";
+  static const String cookie =
+      'ARRAffinity=a46840f5172f30901246e389986daedde0c7a819abbade1abe8516b18dbcfda0; ReqClientId=8e224e53-268f-449c-aaad-07cf823aa901; orgId=7702e763-dc05-469a-bc9a-877f40703b3c';
+  static var headers = {'Authorization': 'Bearer $authToken', 'Cookie': cookie};
 }

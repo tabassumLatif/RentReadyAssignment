@@ -12,7 +12,7 @@ class Account {
       accountNumber: json["accountnumber"] ?? "",
       name: json["name"] ?? "",
       stateCode: json["stateCode"] ?? 0,
-      stateOrProvince: json["stateOrProvince"] ?? "");
+      stateOrProvince: json["address1_stateorprovince"] ?? "");
 
   Map<String, dynamic> toJson() => {
     "accountid": accountId,
