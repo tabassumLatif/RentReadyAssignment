@@ -18,6 +18,8 @@ dependencies:
   http: ^0.13.4
   auto_size_text: ^3.0.0
   page_transition: ^2.0.4
+#  aad_oauth: ^0.4.0
+  flutter_aad_oauth: ^2.3.0
 
 dev_dependencies:
   flutter_test:

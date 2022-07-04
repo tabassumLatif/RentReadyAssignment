@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:rent_ready_assignment/ui/accounts/accountsPage.dart';
 
 import '../controller/AccountsController.dart';
+import '../network/NetworkConstants.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -26,6 +27,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: const AccountsPage(),
+        navigatorKey: NetworkConstants.navigatorKey
     );
   }
 }

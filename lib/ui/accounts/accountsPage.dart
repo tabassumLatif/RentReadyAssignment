@@ -16,7 +16,7 @@ class AccountsPage extends StatelessWidget{
   Widget build(BuildContext context) {
     TextEditingController searchController = TextEditingController();
     AccountsController controller = AccountsController();
-    controller.searchAccounts("");
+    controller.searchAccounts("", context);
     const spinKitThreeBounce = SpinKitThreeBounce(
       color: Colors.white,
       size: 80.0,
@@ -45,7 +45,7 @@ class AccountsPage extends StatelessWidget{
                                 autocorrect: false,
                                 keyboardType: TextInputType.text,
                                 onSubmitted: (s) {
-                                  model.searchAccounts(s);
+                                  model.searchAccounts(s, context);
                                 },
                                 decoration: const InputDecoration(
                                   prefixIcon: Icon(Icons.search),

@@ -51,6 +51,19 @@ class AccountsController extends ChangeNotifier {
     return _selectedStateOrProvince;
   }
 
+  /*Future<void> createAuth() async {
+    var client = await ApiController.createClient();
+
+    // Once you have a Client, you can use it just like any other HTTP client.
+    print(await client.read(Uri.http('example.com', 'protected-resources.txt')));
+
+    // Once we're done with the client, save the credentials file. This ensures
+    // that if the credentials were automatically refreshed while using the
+    // client, the new credentials are available for the next run of the
+    // program.
+    print(client.credentials.toJson());
+    // await ApiController.credentialsFile.writeAsString(client.credentials.toJson());
+}*/
   List<int> get stateCodes {
     List<int> list = [];
     groupBy(_accountList, (Account obj) => obj.stateCode).forEach((key, value) {
@@ -91,11 +104,11 @@ class AccountsController extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> searchAccounts(String searchText) async {
+  Future<void> searchAccounts(String searchText, BuildContext context) async {
     _isDataLoading = true;
     _isFilterVisible = false;
     notifyListeners();
-    _accountList = await ApiController.getAccountList(searchText);
+    _accountList = await ApiController.getAccountList(searchText, context);
     _accounts = _accountList;
     _isDataLoading = false;
     notifyListeners();
